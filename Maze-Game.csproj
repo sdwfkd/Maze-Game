@@ -283,6 +283,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EndIndicator.cs" />
     <Compile Include="Assets\MapGenerate.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
   </ItemGroup>
