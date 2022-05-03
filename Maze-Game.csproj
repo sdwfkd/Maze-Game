@@ -284,7 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\EndIndicator.cs" />
-    <Compile Include="Assets\MapGenerate.cs" />
+    <Compile Include="Assets\MazeGenerator.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
