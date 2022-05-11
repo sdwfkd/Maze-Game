@@ -7,8 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float moveSpeed = 2.0F;
 	public float mouseSpeed = 4.0F;
 	private Vector3 moveDirection = Vector3.zero;
-	private Vector3 cameraRotation = Vector3.zero;
-
+	
 	private float yRot = 0.0F;
 	private float xRot = 0.0F;
 	

@@ -8,18 +8,35 @@ public class MazeGenerator : MonoBehaviour {
 	private List<GameObject> walls = new List<GameObject>();
 	public GameObject wall;
 
+	private bool started = false;
+
 	// Use this for initialization
 	void Start () {
-		recursiveDivision(width, height, 0, 0);
+		//wall = GameObject.FindGameObjectWithTag("Wall");
+		//recursiveDivision(width, height, 0, 0);
 
 		// Loop through and spawn each wall
-		for (int i = 0; i < width; i++){
-			for (int j = 0; j < height; j++){
-				var instance = Instantiate(wall, wall.transform);
-				instance.transform.localPosition = new Vector3(i,0,j);
-				walls.Add(instance);
-			}
+		//for (int i = 0; i < width; i++){
+		//	for (int j = 0; j < height; j++){
+		//		var instance = Instantiate<GameObject>(wall, wall.transform);
+		//		instance.transform.localPosition = new Vector3(i,0,j);
+		//		walls.Add(instance);
+		//	}
+		//}
+
+		// This code can be used to spawn a cube, and transform the copy on the x,z plane for the maze
+		//var instance = Instantiate(wall);
+		//instance.transform.position += new Vector3(1,0,0);
+		if(!started) {
+			
+			doOnce();
+			started = true;
 		}
+	}
+
+	void doOnce(){
+		var instance = Instantiate(wall);
+		instance.transform.position += new Vector3(1, 0, 0);
 	}
 
 	void recursiveDivision(int width, int height, int offsetX, int offsetY){
