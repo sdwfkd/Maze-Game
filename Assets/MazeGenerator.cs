@@ -2,35 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MazeGenerator : MonoBehaviour {
 	public int width = 50, height = 50;
-	private bool[][] maze;
-	private List<GameObject> walls = new List<GameObject>();
+	private static bool[][] maze;
+	private static List<GameObject> walls = new List<GameObject>();
 	public GameObject wall;
-
-	private bool started = false;
+	public static bool started = false;
 
 	// Use this for initialization
 	void Start () {
-		//wall = GameObject.FindGameObjectWithTag("Wall");
-		//recursiveDivision(width, height, 0, 0);
+		// Because started is static we can change it and it will always be applied
+		if (started == false){
+			wall = GameObject.FindGameObjectWithTag("Wall");
+			recursiveDivision(width, height, 0, 0);
 
-		// Loop through and spawn each wall
-		//for (int i = 0; i < width; i++){
-		//	for (int j = 0; j < height; j++){
-		//		var instance = Instantiate<GameObject>(wall, wall.transform);
-		//		instance.transform.localPosition = new Vector3(i,0,j);
-		//		walls.Add(instance);
-		//	}
-		//}
+			// Loop through and spawn each wall
+			//for (int i = 0; i < width; i++){
+			//	for (int j = 0; j < height; j++){
+			//		var instance = Instantiate<GameObject>(wall, wall.transform);
+			//		instance.transform.localPosition = new Vector3(i,0,j);
+			//		walls.Add(instance);
+			//	}
+			//}
 
-		// This code can be used to spawn a cube, and transform the copy on the x,z plane for the maze
-		//var instance = Instantiate(wall);
-		//instance.transform.position += new Vector3(1,0,0);
-		if(!started) {
-			
-			doOnce();
+			// This code can be used to spawn a cube, and transform the copy on the x,z plane for the maze
+			//var instance = Instantiate(wall);
+			//instance.transform.position += new Vector3(1,0,0);
+		
+			Debug.Log("Started: " + started);
 			started = true;
+			//doOnce();
 		}
 	}
 
