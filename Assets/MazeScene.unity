@@ -487,8 +487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30d748cb105a64408f466f6499c2112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 50
-  height: 50
+  width: 10
+  height: 10
   wall: {fileID: 533561674}
 --- !u!23 &533561676
 MeshRenderer:

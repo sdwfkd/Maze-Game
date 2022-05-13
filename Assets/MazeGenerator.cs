@@ -4,9 +4,8 @@ using UnityEngine;
 
 
 public class MazeGenerator : MonoBehaviour {
-	public int width = 50, height = 50;
-	private static bool[][] maze;
-	private static List<GameObject> walls = new List<GameObject>();
+	public int width, height;
+	public static bool[,] maze;
 	public GameObject wall;
 	public static bool started = false;
 
@@ -14,23 +13,30 @@ public class MazeGenerator : MonoBehaviour {
 	void Start () {
 		// Because started is static we can change it and it will always be applied
 		if (started == false){
-			wall = GameObject.FindGameObjectWithTag("Wall");
+			//wall = GameObject.FindGameObjectWithTag("Wall");
+
+			maze = new bool[width, height];
+
 			recursiveDivision(width, height, 0, 0);
 
+			var instance = null;
+
 			// Loop through and spawn each wall
-			//for (int i = 0; i < width; i++){
-			//	for (int j = 0; j < height; j++){
-			//		var instance = Instantiate<GameObject>(wall, wall.transform);
-			//		instance.transform.localPosition = new Vector3(i,0,j);
-			//		walls.Add(instance);
-			//	}
-			//}
+			for (int i = 0; i < width; i++){
+				for (int j = 0; j < height; j++){
+					//Debug.Log("Maze [" + i + ", "+ j +"] = " + maze[i,j]);
+					if (maze[i,j]) {
+						instance = Instantiate(wall);
+						instance.transform.position += new Vector3(i, 0, j);
+					}
+				}
+			}
 
 			// This code can be used to spawn a cube, and transform the copy on the x,z plane for the maze
 			//var instance = Instantiate(wall);
 			//instance.transform.position += new Vector3(1,0,0);
 		
-			Debug.Log("Started: " + started);
+			//Debug.Log("Started: " + started);
 			started = true;
 			//doOnce();
 		}
@@ -42,6 +48,7 @@ public class MazeGenerator : MonoBehaviour {
 	}
 
 	void recursiveDivision(int width, int height, int offsetX, int offsetY){
+		Debug.Log("Recursive Start");
 		// Check for end conditions
 		if (width < 2 || height < 2){
 			return;
@@ -59,9 +66,9 @@ public class MazeGenerator : MonoBehaviour {
 			// Fill them in our maze
 			for(int i = offsetX; i < width; i++){
 				if(i != path){
-					maze[wall][path] = true;
+					maze[wall, path] = true;
 				}else{
-					maze[wall][path] = false;
+					maze[wall, path] = false;
 				}
 			}
 
@@ -77,10 +84,10 @@ public class MazeGenerator : MonoBehaviour {
 			// Fill them in on our maze
 			for (int i = offsetY; i < height; i++){
 				if (i != path){
-					maze[path][wall] = true;
+					maze[path, wall] = true;
 				}
 				else{
-					maze[path][wall] = false;
+					maze[path, wall] = false;
 				}
 			}
 
@@ -88,5 +95,7 @@ public class MazeGenerator : MonoBehaviour {
 			recursiveDivision(width, height - wall, offsetX, offsetY);
 			recursiveDivision(width, height - wall, offsetX, offsetY + wall);
 		}
+
+		Debug.Log("Recursive Div End");
 	}
 }
